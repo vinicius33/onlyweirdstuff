@@ -10,9 +10,6 @@ script:
 before_deploy:
   - yarn global add travis-ci-cloudfront-invalidation
   - yarn run build
-addons:
-  artifacts:
-    s3_region: 'eu-central-1'
 deploy:
   provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
@@ -20,6 +17,7 @@ deploy:
   bucket: $S3_BUCKET
   skip_cleanup: true
   local-dir: build
+  region: eu-central-1
   on:
     branch: master
 after_deploy:
